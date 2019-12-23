@@ -16,15 +16,14 @@ This is a work in progress, and is mostly a means for me to document my current 
 ## Installation
 
 ```
-# Install homebrew (which installs xcode)
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # Use system Python 3 to bootstrap environment
 python3 -m pip install "ansible==2.9.2" --user
 mkdir projects && cd projects/
 git clone git@github.com:copelco/mac-dev-playbook.git
 cd mac-dev-playbook/
-~/Library/Python/3.7/bin/ansible-galaxy install --ignore-certs -r requirements.yml
-~/Library/Python/3.7/bin/ansible-playbook main.yml --connection=local -i inventory -K
+export PATH=${PATH}:~/Library/Python/3.7/bin
+ansible-galaxy install --ignore-certs -r requirements.yml
+ansible-playbook main.yml --connection=local -i inventory -K
 ```
 
   1. Ensure Apple's command line tools are installed (`xcode-select --install` to launch the installer).
