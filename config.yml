@@ -39,6 +39,7 @@ homebrew_cask_apps:
   - docker
   - dropbox
   - firefox
+  - lastpass
   - google-chrome
   - iterm2
   - slack
