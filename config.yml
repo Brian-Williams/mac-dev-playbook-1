@@ -11,8 +11,11 @@ dotfiles_repo: git@github.com:copelco/dotfiles.git
 dotfiles_repo_accept_hostkey: yes
 dotfiles_repo_local_destination: ~/projects/dotfiles-copelco
 dotfiles_files:
-  - .zshrc
+  - .gitconfig
   - .gitignore
+  - .vimrc
+  - .zshrc
+  - .zsh_plugins.txt
 
 homebrew_installed_packages:
   - antibody
