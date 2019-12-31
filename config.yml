@@ -21,7 +21,6 @@ homebrew_installed_packages:
   - antibody
   - git
   - gpg
-  - jq
   - libpq
   - nmap
   - nvm
