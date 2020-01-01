@@ -16,6 +16,7 @@ dotfiles_files:
   - .vimrc
   - .zshrc
   - .zsh_plugins.txt
+  - Library/Application Support/Code/User/settings.json
 
 homebrew_installed_packages:
   - antibody
