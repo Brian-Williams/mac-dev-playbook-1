@@ -24,6 +24,7 @@ homebrew_installed_packages:
   - git
   - gpg
   - libgeoip
+  - libmagic
   - libpq
   - nmap
   - nvm
