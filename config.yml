@@ -20,8 +20,10 @@ dotfiles_files:
 
 homebrew_installed_packages:
   - antibody
+  - gdal
   - git
   - gpg
+  - libgeoip
   - libpq
   - nmap
   - nvm
