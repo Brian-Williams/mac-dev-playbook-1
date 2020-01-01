@@ -28,6 +28,7 @@ homebrew_installed_packages:
   - libpq
   - nmap
   - nvm
+  - pango
   - pyenv
   - pyenv-virtualenv
   - readline
