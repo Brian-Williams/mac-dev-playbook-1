@@ -16,6 +16,7 @@ dotfiles_files:
   - .vimrc
   - .zshrc
   - .zsh_plugins.txt
+  - .p10k.zsh
   - Library/Application Support/Code/User/settings.json
 
 homebrew_installed_packages:
