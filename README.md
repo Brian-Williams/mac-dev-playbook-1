@@ -1,5 +1,22 @@
 # Mac Development Ansible Playbook
 
+Based off of [github.com/geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook).
+
+To bootstrap macOS Catalina, run:
+
+```
+# Use system Python 3 to bootstrap environment
+python3 -m pip install "ansible==2.9.2" --user
+mkdir projects && cd projects/
+git clone git@github.com:copelco/mac-dev-playbook.git
+cd mac-dev-playbook/
+export PATH=${PATH}:~/Library/Python/3.7/bin
+ansible-galaxy install --ignore-certs -r requirements.yml
+ansible-playbook main.yml --connection=local -i inventory -K
+```
+
+---
+
 [![Build Status](https://travis-ci.org/geerlingguy/mac-dev-playbook.svg?branch=master)](https://travis-ci.org/geerlingguy/mac-dev-playbook)
 
 This playbook installs and configures most of the software I use on my Mac for web and software development. Some things in macOS are slightly difficult to automate, so I still have some manual installation steps, but at least it's all documented here.
@@ -50,25 +67,25 @@ You can override any of the defaults configured in `default.config.yml` by creat
       - cowsay
       - git
       - go
-    
+
     mas_installed_apps:
       - { id: 443987910, name: "1Password" }
       - { id: 498486288, name: "Quick Resizer" }
       - { id: 557168941, name: "Tweetbot" }
       - { id: 497799835, name: "Xcode" }
-    
+
     composer_packages:
       - name: hirak/prestissimo
       - name: drush/drush
         version: '^8.1'
-    
+
     gem_packages:
       - name: bundler
         state: latest
-    
+
     npm_packages:
       - name: webpack
-    
+
     pip_packages:
       - name: mkdocs
 
