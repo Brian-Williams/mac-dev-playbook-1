@@ -33,6 +33,7 @@ homebrew_installed_packages:
   - pango
   - pyenv
   - pyenv-virtualenv
+  - pwgen
   - readline
   - openssl
   - wget
