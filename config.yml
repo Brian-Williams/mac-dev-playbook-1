@@ -25,6 +25,7 @@ homebrew_installed_packages:
   - gdal
   - git
   - gpg
+  - heroku
   - hg
   - libgeoip
   - libmagic
@@ -43,6 +44,7 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - heroku/brew
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
