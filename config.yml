@@ -21,12 +21,14 @@ dotfiles_files:
 
 homebrew_installed_packages:
   - antibody
+  - azure-cli
   - ctop
   - gdal
   - git
   - gpg
   - heroku
   - hg
+  - kubectl
   - libgeoip
   - libmagic
   - libpq
