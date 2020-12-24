@@ -19,49 +19,51 @@ dotfiles_files:
   - .p10k.zsh
   - Library/Application Support/Code/User/settings.json
 
+homebrew_prefix: /usr/local
+homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
 homebrew_installed_packages:
-  - antibody
-  - azure-cli
-  - ctop
-  - gdal
-  - git
-  - gpg
-  - heroku
-  - hg
-  - kubectl
-  - libgeoip
-  - libmagic
-  - libpq
-  - nmap
-  - nvm
-  - pango
+  # - antibody
+  # - azure-cli
+  # - ctop
+  # - gdal
+  # - git
+  # - gpg
+  # - heroku
+  # - hg
+  # - kubectl
+  # - libgeoip
+  # - libmagic
+  # - libpq
+  # - nmap
+  # - nvm
+  # - pango
   - pyenv
-  - pyenv-virtualenv
-  - pwgen
-  - readline
-  - openssl
-  - wget
+  # - pyenv-virtualenv
+  # - pwgen
+  # - readline
+  # - openssl
+  # - wget
   - zsh
 
-homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - heroku/brew
+# homebrew_taps:
+#   - homebrew/core
+#   - homebrew/cask
+#   - heroku/brew
 
-homebrew_cask_appdir: /Applications
-homebrew_cask_apps:
-  - adobe-creative-cloud
-  - docker
-  - dropbox
-  - firefox
-  - java
-  - lastpass
-  - google-chrome
-  - iterm2
-  - slack
-  - tunnelblick
-  - virtualbox
-  - visual-studio-code
+# homebrew_cask_appdir: /Applications
+# homebrew_cask_apps:
+#   - adobe-creative-cloud
+#   - docker
+#   - dropbox
+#   - firefox
+#   - java
+#   - lastpass
+#   - google-chrome
+#   - iterm2
+#   - slack
+#   - tunnelblick
+#   - virtualbox
+#   - visual-studio-code
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
