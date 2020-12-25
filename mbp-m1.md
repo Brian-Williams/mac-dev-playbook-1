@@ -53,6 +53,8 @@ colincopeland@MacBook-Pro ~ % python3
 xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
 ```
 
+Or just do `xcode-select --install`?
+
 2. Install ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
 
 ```sh
