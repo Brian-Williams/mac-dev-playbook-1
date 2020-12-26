@@ -106,3 +106,41 @@ ansible-galaxy install -r requirements.yml
 ```
 ansible-playbook main.yml --connection=local -i inventory -K
 ```
+
+
+## Apple Silicon Workaround - Go
+
+Go doesn't work on Apple Silicon yet. direnv, antibody, and other homebrew packages depend on it. These aren't dealbreakers, but it may impact your local setup.
+
+Use this [gist](https://gist.github.com/joseph-ravenwolfe/de8de3c0f79c4684eb4505c2d072d133) to install Go 1.16beta1 manually for now:
+
+
+1. Install [go1.16beta1.darwin-arm64.pkg](https://golang.org/dl/#go1.16beta1).
+2. Run `mkdir /opt/homebrew/Cellar/go`
+3. Create a symlink to the Go v1.16 pkg installation with `ln -s /usr/local/go /opt/homebrew/Cellar/go/1.16`
+4. Run `brew link go`
+5. Ensure `/opt/homebrew/bin` is listed ahead of `/usr/local/bin` in your $PATH
+6. Open a new shell and test by running `go version` which should report `go1.16beta1 darwin/arm64`
+7. Running `which go` should show that it is coming from Homebrew as `/opt/homebrew/bin/go`
+
+Installing packages from Homebrew that depend on Go will require checking the dependencies of the package using `brew info <package_name>` and installing each of the dependencies (except for Go) manually by running `brew install <dependency_name>`.
+
+After installing all non-Go dependencies, we should be able to run `brew install <package_name> --ignore-dependencies` to install the package while using the ARM version of Go linked from Homebrew.
+
+
+### Example
+
+```sh
+# Attempt to install Direnv which relies on Go
+> brew info direnv
+...
+==> Dependencies
+Build: go ✘
+> brew install direnv --ignore-dependencies
+🍺  /opt/homebrew/Cellar/direnv/2.25.2: 10 files, 8.4MB, built in 4 seconds
+```
+
+
+## Apple Silicon Workaround - Docker
+
+Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
