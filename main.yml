@@ -21,8 +21,10 @@
   #     when: mas_installed_apps
   #     tags: ['mas']
 
-  # tasks:
-  #   - include_tasks: tasks/ansible-setup.yml
+  tasks:
+    # - include_tasks: tasks/ansible-setup.yml
+
+    - include_tasks: tasks/fonts.yml
 
   #   - include_tasks: tasks/sudoers.yml
   #     when: configure_sudoers

@@ -1,0 +1,7 @@
+
+- name: Install custom fonts
+  get_url:
+    url: "{{ item }}"
+    dest: "/Users/{{ ansible_user_id }}/Library/Fonts/"
+    mode: '0640'
+  loop: "{{ install_fonts }}"
