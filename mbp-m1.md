@@ -1,7 +1,7 @@
 # Dev Environment Setup Notes on Apple Silicon
-Last updated: Dec. 24, 2020
+Last updated: Dec. 27, 2020
 
-Me attempting to configure my development environment using a MacBook Pro M1.
+I used the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro M1. Not everything is natively supported yet and require workarounds.
 
 
 ## Resources
