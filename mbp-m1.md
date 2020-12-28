@@ -144,3 +144,28 @@ Build: go ✘
 ## Apple Silicon Workaround - Docker
 
 Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
+
+
+## Apple Silicon Workaround - nvm
+
+I was able to install the latest version of node using `nvm`:
+
+```sh
+nvm install v15
+```
+
+It builds from source and takes a while, but eventually producses an arm64 executable:
+
+```sh
+$ file `which node`
+/Users/colincopeland/.nvm/versions/node/v15.5.0/bin/node: Mach-O 64-bit executable arm64
+$ node -p process.arch
+arm64
+```
+
+However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta:
+
+```sh
+$ arch -x86_64 zsh
+$ nvm install v12
+```
