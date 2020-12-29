@@ -14,7 +14,7 @@ softwareupdate --install-rosetta  --agree-to-license
 Also install Xcode's command line tools for `python3` and other useful libraries:
 
 ```
-xcode-select --install`
+xcode-select --install
 ```
 
 
