@@ -1,4 +1,4 @@
-# ython, Django, and React Development on Apple Silicon
+# Python, Django, and React Development on Apple Silicon
 
 I used the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro (13-inch, M1, 2020). Obviously not everything is natively supported yet and require workarounds.
 
