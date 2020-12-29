@@ -52,6 +52,23 @@ export PATH="/opt/homebrew/bin:$PATH"
 brew update
 ```
 
+## Install Intel-emulated Homebrew
+
+Install Intel-emulated Homebrew to the default `/usr/local`:
+
+```
+arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+Add an `alias` to easily run the emulated brew:
+
+```
+❯ alias brewx86='arch --x86_64 /usr/local/Homebrew/bin/brew'
+❯ which brewx86
+brewx86: aliased to arch --x86_64 /usr/local/Homebrew/bin/brew
+❯ brewx86 info
+0 kegs, 64B
+```
 
 ## Install Ansible to run Mac Dev Playbook
 
