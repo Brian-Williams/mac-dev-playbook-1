@@ -41,7 +41,7 @@ So I just use `bash` as noted in the first example to install packages under Ros
 
 ## Install Homebrew Natively on Apple Silicon
 
-Homebrew isn't officially supported yet on Apple Silicon, but it partially works. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information. 
+Homebrew isn't officially supported yet on Apple Silicon, but you can use it. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information. 
 
 Install ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
 
