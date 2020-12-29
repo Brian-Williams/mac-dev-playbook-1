@@ -18,6 +18,27 @@ xcode-select --install
 ```
 
 
+### Intel-emulated Terminal
+
+Use the `arch` command to run commands under Rosetta 2:
+
+```sh
+> arch
+arm64
+> arch -x86_64 bash -c "arch"
+i386
+```
+
+My current `.zshrc` configuration is incompatible using Rosetta 2, so you may not be able to launch a `zsh` shell like this:
+
+```
+❯ arch -x86_64 zsh
+arch: posix_spawnp: zsh: Bad CPU type in executable
+```
+
+So I just use `bash` as noted in the first example to install packages under Rosetta 2.
+
+
 ## Install Homebrew Natively on Apple Silicon
 
 Homebrew isn't officially supported yet on Apple Silicon, but it partially works. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information. 
