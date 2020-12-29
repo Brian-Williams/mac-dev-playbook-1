@@ -1,18 +1,21 @@
-# Dev Environment Setup Notes on Apple Silicon
-Last updated: Dec. 27, 2020
+# ython, Django, and React Development on Apple Silicon
 
-I used the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro M1. Not everything is natively supported yet and require workarounds.
-
-
-## Resources
-
-* https://isapplesiliconready.com
+I used the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro (13-inch, M1, 2020). Obviously not everything is natively supported yet and require workarounds.
 
 
-## Initial applications
+## Rosetta 2 and Command Line Tools for Xcode
 
-* Slack via Mac App Store
-* [VS Code Insiders](https://code.visualstudio.com/insiders/)
+[Rosetta 2](https://support.apple.com/en-us/HT211861) enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor. Install it with:
+
+```sh
+softwareupdate --install-rosetta  --agree-to-license
+```
+
+Also install Xcode's command line tools for `python3` and other useful libraries:
+
+```
+xcode-select --install`
+```
 
 
 ## Homebrew
@@ -169,3 +172,14 @@ However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip
 $ arch -x86_64 zsh
 $ nvm install v12
 ```
+
+
+## Resources
+
+* https://isapplesiliconready.com
+
+
+## Initial applications
+
+* Slack via Mac App Store
+* [VS Code Insiders](https://code.visualstudio.com/insiders/)
