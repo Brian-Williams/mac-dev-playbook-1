@@ -18,11 +18,23 @@ xcode-select --install
 ```
 
 
-## Homebrew
+## Install Homebrew Natively on Apple Silicon
 
-Homebrew isn't officially supported yet on Apple Silicon. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information.
+Homebrew isn't officially supported yet on Apple Silicon, but it partially works. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information. 
 
-Many packages will fail to compile without necessary libraries . For example, Ansible fails to install because ``cryptography`` fails to find `openssl`.
+Install ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
+
+```sh
+mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+sudo mv homebrew /opt/homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+brew update
+```
+
+
+## Install Ansible to run Mac Dev Playbook
+
+I use this repository to automate base configuration of my Mac development environment, which uses Ansible. Ansible fails to install because ``cryptography`` fails to find `openssl`.
 
 ```
   ...
@@ -49,25 +61,7 @@ Many packages will fail to compile without necessary libraries . For example, An
 Failed to build cryptography
 ```
 
-1. Run ``python3`` to trigger xcode command line tools to install
-
-```
-colincopeland@MacBook-Pro ~ % python3
-xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
-```
-
-Or just do `xcode-select --install`?
-
-2. Install ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
-
-```sh
-mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
-sudo mv homebrew /opt/homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-brew update
-```
-
-4. Install base package like `curl` which will also install `openssl`. Ignore homebrew warnings:
+Install `openssl` using Homebrew (ignore arm64 warnings):
 
 ```
 colincopeland@MacBook-Pro bin % brew install -s curl
@@ -84,9 +78,7 @@ unsupported configuration.
 ...
 ```
 
-## Mac Dev Playbook
-
-1. Now install ansible:
+Now install `ansible`:
 
 ```sh
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
@@ -94,29 +86,31 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 python3 -m pip install ansible --user
 ```
 
-2. Clone this repo and install galaxy packages:
 
-```sh
-mkdir projects && cd projects/
-git clone git@github.com:copelco/mac-dev-playbook.git
-cd mac-dev-playbook/
-export PATH=${PATH}:~/Library/Python/3.8/bin
-ansible-galaxy install -r requirements.yml
-```
+## Mac Dev Playbook
 
-3. Run playbook:
+1. Clone this repo and install galaxy packages:
 
-```
-ansible-playbook main.yml --connection=local -i inventory -K
-```
+   ```sh
+   mkdir projects && cd projects/
+   git clone git@github.com:copelco/mac-dev-playbook.git
+   cd mac-dev-playbook/
+   export PATH=${PATH}:~/Library/Python/3.8/bin
+   ansible-galaxy install -r requirements.yml
+   ```
+
+2. Run playbook:
+
+   ```
+   ansible-playbook main.yml -i inventory -K
+   ```
 
 
 ## Apple Silicon Workaround - Go
 
-Go doesn't work on Apple Silicon yet. direnv, antibody, and other homebrew packages depend on it. These aren't dealbreakers, but it may impact your local setup.
+Go isn't officially supported on Apple Silicon yet. `direnv`, `antibody`, and other homebrew packages depend on it. These aren't dealbreakers, but it may impact your local setup.
 
-Use this [gist](https://gist.github.com/joseph-ravenwolfe/de8de3c0f79c4684eb4505c2d072d133) to install Go 1.16beta1 manually for now:
-
+Use this [gist](https://gist.github.com/joseph-ravenwolfe/de8de3c0f79c4684eb4505c2d072d133) to install Go `1.16beta1` manually for now:
 
 1. Install [go1.16beta1.darwin-arm64.pkg](https://golang.org/dl/#go1.16beta1).
 2. Run `mkdir /opt/homebrew/Cellar/go`
@@ -144,11 +138,6 @@ Build: go ✘
 ```
 
 
-## Apple Silicon Workaround - Docker
-
-Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
-
-
 ## Apple Silicon Workaround - nvm
 
 I was able to install the latest version of node using `nvm`:
@@ -166,12 +155,18 @@ $ node -p process.arch
 arm64
 ```
 
-However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta:
+However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta.
 
 ```sh
 $ arch -x86_64 zsh
 $ nvm install v12
 ```
+
+
+## Apple Silicon Workaround - Docker
+
+Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
+
 
 
 ## Resources
