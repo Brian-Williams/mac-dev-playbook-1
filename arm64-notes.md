@@ -176,7 +176,9 @@ It builds from source and takes a while, but eventually producses an arm64 execu
 arm64
 ```
 
-However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta.
+However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta 2.
+
+You can install Node v12 like this:
 
 ```sh
 ❯ arch -x86_64 bash
