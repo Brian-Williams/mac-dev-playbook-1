@@ -5,10 +5,19 @@
     - default.config.yml
 
   pre_tasks:
-    - include_vars: "{{ item }}"
+    - name: "include x86_64 config"
+      include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
+      when: ansible_architecture == "x86_64"
+
+    - name: "include arm64 config"
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config-arm64.yml"
+      tags: ['always']
+      when: ansible_architecture == "arm64"
 
   roles:
     - role: geerlingguy.homebrew

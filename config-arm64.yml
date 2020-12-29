@@ -1,0 +1,106 @@
+---
+
+downloads: ~/.ansible-downloads/
+
+configure_dotfiles: yes
+configure_sudoers: no
+configure_terminal: no
+configure_osx: no
+
+dotfiles_repo: git@github.com:copelco/dotfiles.git
+dotfiles_repo_accept_hostkey: yes
+dotfiles_repo_local_destination: ~/projects/dotfiles-copelco
+dotfiles_files:
+  - .gitconfig
+  - .gitignore
+  - .vimrc
+  - .zshrc
+  - .zsh_plugins.txt
+  - .p10k.zsh
+  - Library/Application Support/Code/User/settings.json
+
+homebrew_prefix: /opt/homebrew
+homebrew_install_path: "{{ homebrew_prefix }}"
+homebrew_brew_bin_path: "{{ homebrew_install_path }}/bin"
+homebrew_installed_packages:
+  - name: antibody
+    install_options: [ignore-dependencies, build-from-source]
+  # - azure-cli
+  # - ctop
+  - name: direnv
+    install_options: [ignore-dependencies, build-from-source]
+  # - gdal
+  # - git
+  # - gpg
+  # - heroku
+  # - hg
+  # - kubectl
+  # - libgeoip
+  # - libmagic
+  - libpq
+  # - nmap
+  - nvm
+  # - pango
+  - pyenv
+  - pyenv-virtualenv
+  - pwgen
+  # - readline
+  # - openssl
+  - wget
+  - zsh
+
+homebrew_taps:
+  - homebrew/core
+  # - homebrew/cask
+  # - heroku/brew
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps: []
+  # - adobe-creative-cloud
+  # - docker
+  # - dropbox
+  # - firefox
+  # - java
+  # - lastpass
+  # - google-chrome
+  # - iterm2
+  # - slack
+  # - tunnelblick
+  # - virtualbox
+  # - visual-studio-code
+
+install_fonts:
+  - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+  - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+  - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+  - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_installed_apps: []
+mas_email: ""
+mas_password: ""
+
+osx_script: "~/.osx --no-restart"
+
+# Install packages from other package managers.
+# Note: You are responsible for making sure the required package managers are
+# installed, eg. through homebrew.
+composer_packages: []
+  # - name: drush
+  #   state: present # present/absent, default: present
+  #   version: "^8.1" # default: N/A
+gem_packages: []
+  # - name: bundler
+  #   state: present # present/absent/latest, default: present
+  #   version: "~> 1.15.1" # default: N/A
+npm_packages: []
+  # - name: webpack
+  #   state: present # present/absent/latest, default: present
+  #   version: "^2.6" # default: N/A
+pip_packages: []
+  # - name: mkdocs
+  #   state: present # present/absent/latest, default: present
+  #   version: "0.16.3" # default: N/A
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks: []
