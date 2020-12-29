@@ -164,23 +164,42 @@ Build: go ✘
 I was able to install the latest version of node using `nvm`:
 
 ```sh
-nvm install v15
+❯ nvm install v15
 ```
 
 It builds from source and takes a while, but eventually producses an arm64 executable:
 
 ```sh
-$ file `which node`
+❯ file `which node`
 /Users/colincopeland/.nvm/versions/node/v15.5.0/bin/node: Mach-O 64-bit executable arm64
-$ node -p process.arch
+❯ node -p process.arch
 arm64
 ```
 
 However, as noted in [nvm install node fails to install on macOS Big Sur M1 Chip #2350](https://github.com/nvm-sh/nvm/issues/2350), older versions of node require Rosetta.
 
 ```sh
-$ arch -x86_64 zsh
-$ nvm install v12
+❯ arch -x86_64 bash
+❯ source /opt/homebrew/opt/nvm/nvm.sh
+❯ nvm install v12
+Downloading and installing node v12.20.0...
+Downloading https://nodejs.org/dist/v12.20.0/node-v12.20.0-darwin-x64.tar.xz...
+Computing checksum with shasum -a 256
+Checksums matched!
+Now using node v12.20.0 (npm v6.14.8)
+```
+
+Now you can switch seamlessly:
+
+```sh
+❯ nvm use 12
+Now using node v12.20.0 (npm v6.14.8)
+❯ node -p process.arch
+x64
+❯ nvm use default
+Now using node v15.5.0 (npm v7.3.0)
+❯ node -p process.arch
+arm64
 ```
 
 
