@@ -41,8 +41,8 @@ homebrew_installed_packages:
   # - nmap
   - nvm
   # - pango
-  - pyenv
-  - pyenv-virtualenv
+  # - pyenv
+  # - pyenv-virtualenv
   - pwgen
   # - readline
   # - openssl
