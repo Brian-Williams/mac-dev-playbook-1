@@ -184,7 +184,7 @@ I was able to install the latest version of node using `nvm`:
 ❯ nvm install v15
 ```
 
-It builds from source and takes a while, but eventually producses an arm64 executable:
+It builds from source and takes a while, but eventually produces an arm64 executable:
 
 ```sh
 ❯ file `which node`
