@@ -17,7 +17,7 @@ dotfiles_files:
   - .zshrc
   - .zsh_plugins.txt
   - .p10k.zsh
-  - Library/Application Support/Code/User/settings.json
+  # - Library/Application Support/Code/User/settings.json
 
 homebrew_prefix: /opt/homebrew
 homebrew_install_path: "{{ homebrew_prefix }}"
