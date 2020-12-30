@@ -246,6 +246,14 @@ Python 3.8.2
 /usr/bin/python3 (for architecture arm64e):     Mach-O 64-bit executable arm64e
 ```
 
+This means the following version of Python can run natively:
+
+* 2.7 (from Xcode)
+* 3.8 (from Xcode)
+* 3.9 (using pyenv below)
+
+According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython. [Issue 41100](https://bugs.python.org/issue41100) doesn't indicate Python 3.7 and below will ever be supported.
+
 
 ### Install pyenv from source
 
