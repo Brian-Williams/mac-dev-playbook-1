@@ -221,11 +221,76 @@ Now using node v15.5.0 (npm v7.3.0)
 arm64
 ```
 
+## Python
+
+Xcode's command line tools provide several versions of Python that can run natively on Applie Silicon:
+
+```sh
+❯ python2 --version
+Python 2.7.16
+❯ python3 --version
+Python 3.8.2
+❯ file /usr/bin/python
+/usr/bin/python: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64e:Mach-O 64-bit executable arm64e]
+/usr/bin/python (for architecture x86_64):      Mach-O 64-bit executable x86_64
+/usr/bin/python (for architecture arm64e):      Mach-O 64-bit executable arm64e
+❯ file /usr/bin/python3
+/usr/bin/python3: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64e:Mach-O 64-bit executable arm64e]
+/usr/bin/python3 (for architecture x86_64):     Mach-O 64-bit executable x86_64
+/usr/bin/python3 (for architecture arm64e):     Mach-O 64-bit executable arm64e
+```
+
+
+### Install pyenv from source
+
+I like [pyenv](https://github.com/pyenv/pyenv) for Python version management. I used to use [python-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtualenvs, but I think it may be [unmaintained](https://github.com/pyenv/pyenv-virtualenv/issues/374). direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) looks like a great alternative. Not only does it include `pyenv` support, but also the ability to use other Python binaries.
+
+pyenv hasn't released a new version to be picked up with Homebrew yet, so we'll install pyenv from source:
+
+```
+git clone git@github.com:pyenv/pyenv.git ~/.pyenv
+```
+
+Add to `.zshrc`:
+
+```sh
+# pyenv git checkout
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+```
+
+Install latest Python 3.9.x version:
+
+```sh
+❯ pyenv install 3.9.1
+python-build: use openssl@1.1 from homebrew
+python-build: use readline from homebrew
+Downloading Python-3.9.1.tar.xz...
+-> https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tar.xz
+Installing Python-3.9.1...
+python-build: use readline from homebrew
+python-build: use zlib from xcode sdk
+Installed Python-3.9.1 to /Users/colincopeland/.pyenv/versions/3.9.1
+```
+
+This installs a Python 3.9.x `arm64` binary:
+
+```
+❯ file ~/.pyenv/versions/3.9.1/bin/python
+/Users/colincopeland/.pyenv/versions/3.9.1/bin/python: Mach-O 64-bit executable arm64
+```
+
+And can easily be used with direnv in your `.envrc`:
+
+```sh
+# .envrc
+layout pyenv 3.9.1
+```
+
 
 ## Apple Silicon Workaround - Docker
 
 Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
-
 
 
 ## Resources
