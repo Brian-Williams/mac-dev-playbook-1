@@ -44,10 +44,11 @@ homebrew_installed_packages:
   # - pyenv
   # - pyenv-virtualenv
   - pwgen
-  # - readline
-  # - openssl
+  - readline
+  - openssl
   - wget
   - zsh
+  - zlib
 
 homebrew_taps:
   - homebrew/core
