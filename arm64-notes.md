@@ -178,6 +178,12 @@ Build: go ✘
 
 ## Apple Silicon Workaround - nvm
 
+``nvm`` is available in Homebrew:
+
+```sh
+brew install nvm
+```
+
 I was able to install the latest version of node using `nvm`:
 
 ```sh
