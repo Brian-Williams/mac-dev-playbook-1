@@ -317,6 +317,32 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include -I/opt/homebrew/opt/zli
 ```
 
 
+## Install Intel-emulated Python 3.7
+
+Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2:
+
+```sh
+arch -x86_64 bash
+export PATH="/usr/local/Homebrew/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include"
+brew install python@3.7
+```
+
+Now you can run it normally using:
+
+```sh
+❯ export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+❯ file `which python3.7`
+/usr/local/opt/python@3.7/bin/python3.7: Mach-O 64-bit executable x86_64
+❯ python3.7
+Python 3.7.9 (default, Nov 20 2020, 23:58:42) 
+[Clang 12.0.0 (clang-1200.0.32.27)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+
+
 ## Apple Silicon Workaround - Docker
 
 Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
