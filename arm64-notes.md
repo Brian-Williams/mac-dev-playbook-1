@@ -252,7 +252,11 @@ This means the following version of Python can run natively:
 * 3.8 (from Xcode)
 * 3.9 (using pyenv below)
 
-According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython. [Issue 41100](https://bugs.python.org/issue41100) doesn't indicate Python 3.7 and below will ever be supported.
+According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython distribution. [Issue 41100](https://bugs.python.org/issue41100#msg382939 indicates Python 3.7 and below will never be supported:
+
+> There are no plans to backport support to 3.7 and 3.6 which are in the security-fix-only phase of their release cycles.
+
+Rosetta 2 is required for these versions, but I haven't investigated this path yet.
 
 
 ### Install pyenv from source
