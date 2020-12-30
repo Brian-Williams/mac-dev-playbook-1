@@ -294,6 +294,17 @@ layout pyenv 3.9.1
 ```
 
 
+### Python packages requiring compilation
+
+I found it useful to add these flags to your `.zshrc` to ensure Python packages compile properly:
+
+```sh
+# usful Python C-library compliation flags
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib -L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include -I/opt/homebrew/opt/zlib/include"
+```
+
+
 ## Apple Silicon Workaround - Docker
 
 Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
