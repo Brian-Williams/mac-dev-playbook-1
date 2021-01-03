@@ -348,6 +348,24 @@ Type "help", "copyright", "credits" or "license" for more information.
 Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
 
 
+### Kubernetes - kubectl CLI
+
+`kubectl` on Apple Silicon is slated for [Go 1.16](https://github.com/kubernetes/kubectl/issues/988). Following [Install kubectl binary with curl on macOS](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-with-curl-on-macos), I wasn't able to run the binaries using Rosetta 2. However, Docker's [Apple M1 Tech Preview] comes with kubectl 1.19:
+
+```sh
+❯ kubectl.docker version
+Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCommit:"1e11e4a2108024935ecfcb2912226cedeafd99df", GitTreeState:"clean", BuildDate:"2020-10-14T12:50:19Z", GoVersion:"go1.15.2", Compiler:"gc", Platform:"darwin/amd64"}
+```
+
+However, you can also use homebrew to install an Intel-emulated version of kubectl:
+
+```
+arch -x86_64 bash
+export PATH="/usr/local/Homebrew/bin:$PATH"
+brew install kubectl
+```
+
+
 ## Resources
 
 * https://isapplesiliconready.com
