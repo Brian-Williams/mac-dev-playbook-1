@@ -3,6 +3,11 @@
 I'm using the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro (13-inch, M1, 2020). This is a work in progress. Obviously not everything is natively supported yet and require workarounds.
 
 
+## Applications and tools I use daily
+
+* 
+
+
 ## Rosetta 2 and Command Line Tools for Xcode
 
 [Rosetta 2](https://support.apple.com/en-us/HT211861) enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor. Install it with:
@@ -319,7 +324,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include -I/opt/homebrew/opt/zli
 
 ## Install Intel-emulated Python 3.7
 
-Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2:
+Python 3.7 isn't supported on Apple Silicon. While it can be installed via Homebrew using Rosetta 2:
 
 ```sh
 arch -x86_64 bash
@@ -329,7 +334,7 @@ export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/incl
 brew install python@3.7
 ```
 
-Now you can run it normally using:
+And you can run it normally using:
 
 ```sh
 ❯ export PATH="/usr/local/opt/python@3.7/bin:$PATH"
@@ -341,6 +346,27 @@ Python 3.7.9 (default, Nov 20 2020, 23:58:42)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
+
+I've run into issues with packages with external dependencies (such as `libffi`):
+
+```sh
+❯ brewx86 install libffi
+❯ /usr/local/opt/python@3.7/bin/python3 -m pip install bcrypt
+❯ /usr/local/opt/python@3.7/bin/python3 -m bcrypt
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.7/3.7.9_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 183, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/usr/local/Cellar/python@3.7/3.7.9_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 142, in _get_module_details
+    return _get_module_details(pkg_main_name, error)
+  File "/usr/local/Cellar/python@3.7/3.7.9_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 109, in _get_module_details
+    __import__(pkg_name)
+  File "/usr/local/lib/python3.7/site-packages/bcrypt/__init__.py", line 25, in <module>
+    from . import _bcrypt  # type: ignore
+ImportError: dlopen(/usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so, 2): Symbol not found: _ffi_type_double
+  Referenced from: /usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
+  Expected in: flat namespace
+ in /usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
+ ```
 
 
 ## Apple Silicon Workaround - Docker
