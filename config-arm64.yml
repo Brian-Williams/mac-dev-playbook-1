@@ -25,7 +25,7 @@ homebrew_brew_bin_path: "{{ homebrew_install_path }}/bin"
 homebrew_installed_packages:
   - name: antibody
     install_options: [ignore-dependencies, build-from-source]
-  # - azure-cli
+  - azure-cli
   - cairo
   # - ctop
   - name: direnv
