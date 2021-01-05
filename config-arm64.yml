@@ -26,6 +26,7 @@ homebrew_installed_packages:
   - name: antibody
     install_options: [ignore-dependencies, build-from-source]
   # - azure-cli
+  - cairo
   # - ctop
   - name: direnv
     install_options: [ignore-dependencies, build-from-source]
@@ -38,11 +39,11 @@ homebrew_installed_packages:
   - libffi
   # - libgeoip
   - libjpeg
-  # - libmagic
+  - libmagic
   - libpq
   # - nmap
   - nvm
-  # - pango
+  - pango
   # - pyenv
   # - pyenv-virtualenv
   - pwgen
