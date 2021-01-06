@@ -355,7 +355,7 @@ And now ``import magic`` works for me. Based on what I've read, setting this [en
 
 ## Install Intel-emulated Python 3.7
 
-Python 3.7 isn't supported on Apple Silicon. While it can be installed via Homebrew using Rosetta 2:
+Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2, but I've had trouble using it with my Django projects. I've included the steps below to get it installed, but use at your own risk:
 
 ```sh
 arch -x86_64 bash
