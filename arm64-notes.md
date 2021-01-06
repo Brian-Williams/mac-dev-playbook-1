@@ -350,7 +350,7 @@ As a workaround, I set ``DYLD_FALLBACK_LIBRARY_PATH`` in my project's `.direnv` 
 export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib
 ```
 
-And now ``import magic`` works for me.
+And now ``import magic`` works for me. Based on what I've read, setting this [environment variable is risky](https://medium.com/macos-is-not-linux-and-other-nix-reflections/d-o-y-ou-ld-library-path-you-6ab0a6135a33), so I'm using this as a workaround until I find something better.
 
 
 ## Install Intel-emulated Python 3.7
