@@ -53,11 +53,11 @@ homebrew_installed_packages:
 
 homebrew_taps:
   - homebrew/core
-  # - homebrew/cask
+  - homebrew/cask
   # - heroku/brew
 
 homebrew_cask_appdir: /Applications
-homebrew_cask_apps: []
+homebrew_cask_apps:
   # - adobe-creative-cloud
   # - docker
   # - dropbox
@@ -65,7 +65,7 @@ homebrew_cask_apps: []
   # - java
   # - lastpass
   # - google-chrome
-  # - iterm2
+  - iterm2
   # - slack
   # - tunnelblick
   # - virtualbox
