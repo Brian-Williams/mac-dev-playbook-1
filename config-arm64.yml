@@ -23,13 +23,11 @@ homebrew_prefix: /opt/homebrew
 homebrew_install_path: "{{ homebrew_prefix }}"
 homebrew_brew_bin_path: "{{ homebrew_install_path }}/bin"
 homebrew_installed_packages:
-  - name: antibody
-    install_options: [ignore-dependencies, build-from-source]
+  - antibody
   - azure-cli
   - cairo
   # - ctop
-  - name: direnv
-    install_options: [ignore-dependencies, build-from-source]
+  - direnv
   # - gdal
   # - git
   # - gpg
