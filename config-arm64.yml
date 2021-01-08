@@ -42,6 +42,7 @@ homebrew_installed_packages:
   # - nmap
   - nvm
   - pango
+  - postgresql
   # - pyenv
   # - pyenv-virtualenv
   - pwgen
