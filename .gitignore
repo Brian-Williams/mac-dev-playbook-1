@@ -2,3 +2,5 @@
 .DS_Store
 *.retry
 roles*
+.direnv
+.vscode
