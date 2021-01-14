@@ -359,10 +359,9 @@ Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew us
 
 ```sh
 arch -x86_64 bash
-export PATH="/usr/local/Homebrew/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib"
-export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include"
+export PATH="/usr/local/Homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 brew install python@3.7
+brew install python@3.8
 ```
 
 And you can run it normally using:
