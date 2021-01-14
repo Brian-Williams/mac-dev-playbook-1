@@ -317,8 +317,8 @@ I found it useful to add these flags to your `.zshrc` to ensure Python packages 
 
 ```sh
 # usful Python C-library compliation flags
-export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib -L/opt/homebrew/opt/zlib/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include -I/opt/homebrew/opt/zlib/include"
+export LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include"
 ```
 
 
