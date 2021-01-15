@@ -53,7 +53,7 @@ arch: posix_spawnp: zsh: Bad CPU type in executable
 So I just use `bash` as noted in the first example to install packages under Rosetta 2.
 
 
-## Install Homebrew Natively on Apple Silicon
+## Install Homebrew
 
 Homebrew does [support Apple Silicon](https://brew.sh/2020/12/01/homebrew-2.6.0/). However, a particular package may not run natively, so your milaealge may vary. To support running both native arm64 and x86-emulated homebrew packages, you install them side-by-side.
 
@@ -66,87 +66,13 @@ export PATH="/opt/homebrew/bin:$PATH"
 brew update
 ```
 
-## Install Intel-emulated Homebrew
+### Install Intel-emulated Homebrew
 
 Install Intel-emulated Homebrew to the default `/usr/local`:
 
 ```
 arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
-
-
-## Install Ansible to run Mac Dev Playbook
-
-I use this repository to automate base configuration of my Mac development environment, which uses Ansible. Ansible fails to install because ``cryptography`` fails to find `openssl`.
-
-```
-  ...
-  build/temp.macosx-10.14.6-arm64-3.8/_openssl.c:575:10: fatal error: 'openssl/opensslv.h' file not found
-  #include <openssl/opensslv.h>
-           ^~~~~~~~~~~~~~~~~~~~
-  1 error generated.
-  
-      =============================DEBUG ASSISTANCE=============================
-      If you are seeing a compilation error please try the following steps to
-      successfully install cryptography:
-      1) Upgrade to the latest pip and try again. This will fix errors for most
-         users. See: https://pip.pypa.io/en/stable/installing/#upgrading-pip
-      2) Read https://cryptography.io/en/latest/installation.html for specific
-         instructions for your platform.
-      3) Check our frequently asked questions for more information:
-         https://cryptography.io/en/latest/faq.html
-      =============================DEBUG ASSISTANCE=============================
-  
-  error: command 'clang' failed with exit status 1
-  ----------------------------------------
-  ERROR: Failed building wheel for cryptography
-  Running setup.py clean for cryptography
-Failed to build cryptography
-```
-
-Install `openssl` using Homebrew (ignore arm64 warnings):
-
-```
-colincopeland@MacBook-Pro bin % brew install -s curl
-Warning: You are running macOS on a arm64 CPU architecture.
-We do not provide support for this (yet).
-Reinstall Homebrew under Rosetta 2 until we support it.
-You will encounter build failures with some formulae.
-Please create pull requests instead of asking for help on Homebrew's GitHub,
-Twitter or any other official channels. You are responsible for resolving
-any issues you experience while you are running this
-unsupported configuration.
-
-==> Downloading https://homebrew.bintray.com/bottles/pkg-config-0.29.2_3.arm64_big_sur.bottle.tar.gz
-...
-```
-
-Now install `ansible`:
-
-```sh
-export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
-python3 -m pip install ansible --user
-```
-
-
-## Mac Dev Playbook
-
-1. Clone this repo and install galaxy packages:
-
-   ```sh
-   mkdir projects && cd projects/
-   git clone git@github.com:copelco/mac-dev-playbook.git
-   cd mac-dev-playbook/
-   export PATH=${PATH}:~/Library/Python/3.8/bin
-   ansible-galaxy install -r requirements.yml
-   ```
-
-2. Run playbook:
-
-   ```
-   ansible-playbook main.yml -i inventory -K
-   ```
 
 
 ## Apple Silicon Workaround - Go
@@ -431,3 +357,77 @@ brew install kubectl
 
 * Slack via Mac App Store
 * [VS Code Insiders](https://code.visualstudio.com/insiders/)
+
+
+## Install Ansible to run Mac Dev Playbook
+
+I use this repository to automate base configuration of my Mac development environment, which uses Ansible. Ansible fails to install because ``cryptography`` fails to find `openssl`.
+
+```
+  ...
+  build/temp.macosx-10.14.6-arm64-3.8/_openssl.c:575:10: fatal error: 'openssl/opensslv.h' file not found
+  #include <openssl/opensslv.h>
+           ^~~~~~~~~~~~~~~~~~~~
+  1 error generated.
+  
+      =============================DEBUG ASSISTANCE=============================
+      If you are seeing a compilation error please try the following steps to
+      successfully install cryptography:
+      1) Upgrade to the latest pip and try again. This will fix errors for most
+         users. See: https://pip.pypa.io/en/stable/installing/#upgrading-pip
+      2) Read https://cryptography.io/en/latest/installation.html for specific
+         instructions for your platform.
+      3) Check our frequently asked questions for more information:
+         https://cryptography.io/en/latest/faq.html
+      =============================DEBUG ASSISTANCE=============================
+  
+  error: command 'clang' failed with exit status 1
+  ----------------------------------------
+  ERROR: Failed building wheel for cryptography
+  Running setup.py clean for cryptography
+Failed to build cryptography
+```
+
+Install `openssl` using Homebrew (ignore arm64 warnings):
+
+```
+colincopeland@MacBook-Pro bin % brew install -s curl
+Warning: You are running macOS on a arm64 CPU architecture.
+We do not provide support for this (yet).
+Reinstall Homebrew under Rosetta 2 until we support it.
+You will encounter build failures with some formulae.
+Please create pull requests instead of asking for help on Homebrew's GitHub,
+Twitter or any other official channels. You are responsible for resolving
+any issues you experience while you are running this
+unsupported configuration.
+
+==> Downloading https://homebrew.bintray.com/bottles/pkg-config-0.29.2_3.arm64_big_sur.bottle.tar.gz
+...
+```
+
+Now install `ansible`:
+
+```sh
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+python3 -m pip install ansible --user
+```
+
+
+## Mac Dev Playbook
+
+1. Clone this repo and install galaxy packages:
+
+   ```sh
+   mkdir projects && cd projects/
+   git clone git@github.com:copelco/mac-dev-playbook.git
+   cd mac-dev-playbook/
+   export PATH=${PATH}:~/Library/Python/3.8/bin
+   ansible-galaxy install -r requirements.yml
+   ```
+
+2. Run playbook:
+
+   ```
+   ansible-playbook main.yml -i inventory -K
+   ```
