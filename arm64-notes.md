@@ -55,9 +55,9 @@ So I just use `bash` as noted in the first example to install packages under Ros
 
 ## Install Homebrew Natively on Apple Silicon
 
-Homebrew isn't officially supported yet on Apple Silicon, but you can use it. See [macOS 11 Big Sur compatibility on Apple Silicon #7857](https://github.com/Homebrew/brew/issues/7857) for more information. 
+Homebrew does [support Apple Silicon](https://brew.sh/2020/12/01/homebrew-2.6.0/). However, a particular package may not run natively, so your milaealge may vary. To support running both native arm64 and x86-emulated homebrew packages, you install them side-by-side.
 
-Install ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
+Install arm64 ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
 
 ```sh
 mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
@@ -74,15 +74,6 @@ Install Intel-emulated Homebrew to the default `/usr/local`:
 arch --x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-Add an `alias` to easily run the emulated brew:
-
-```
-❯ alias brewx86='arch --x86_64 /usr/local/Homebrew/bin/brew'
-❯ which brewx86
-brewx86: aliased to arch --x86_64 /usr/local/Homebrew/bin/brew
-❯ brewx86 info
-0 kegs, 64B
-```
 
 ## Install Ansible to run Mac Dev Playbook
 
