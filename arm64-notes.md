@@ -126,6 +126,7 @@ Now using node v15.5.0 (npm v7.3.0)
 arm64
 ```
 
+
 ## Python
 
 Xcode's command line tools provide several versions of Python that can run natively on Applie Silicon:
@@ -145,64 +146,13 @@ Python 3.8.2
 /usr/bin/python3 (for architecture arm64e):     Mach-O 64-bit executable arm64e
 ```
 
-This means the following version of Python can run natively:
-
-* 2.7 (from Xcode)
-* 3.8 (from Xcode)
-* 3.9 (using pyenv below)
-
-According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython distribution. [Issue 41100](https://bugs.python.org/issue41100#msg382939 indicates Python 3.7 and below will never be supported:
+According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython distribution. [Issue 41100](https://bugs.python.org/issue41100#msg382939) indicates Python 3.7 and below will never be supported:
 
 > There are no plans to backport support to 3.7 and 3.6 which are in the security-fix-only phase of their release cycles.
 
-Rosetta 2 is required for these versions, but I haven't investigated this path yet.
+Rosetta 2 is required for these versions. I'm using Homebrew to install and manage Python versions on my M1 Mac currently. I used to use [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), but I wasn't able to install different versions successfully (even in Rosetta).
 
-
-### Install pyenv from source
-
-I like [pyenv](https://github.com/pyenv/pyenv) for Python version management. I used to use [python-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtualenvs, but I think it may be [unmaintained](https://github.com/pyenv/pyenv-virtualenv/issues/374). direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) looks like a great alternative. Not only does it include `pyenv` support, but also the ability to use other Python binaries.
-
-pyenv hasn't released a new version to be picked up with Homebrew yet, so we'll install pyenv from source:
-
-```
-git clone git@github.com:pyenv/pyenv.git ~/.pyenv
-```
-
-Add to `.zshrc`:
-
-```sh
-# pyenv git checkout
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-```
-
-Install latest Python 3.9.x version:
-
-```sh
-❯ pyenv install 3.9.1
-python-build: use openssl@1.1 from homebrew
-python-build: use readline from homebrew
-Downloading Python-3.9.1.tar.xz...
--> https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tar.xz
-Installing Python-3.9.1...
-python-build: use readline from homebrew
-python-build: use zlib from xcode sdk
-Installed Python-3.9.1 to /Users/colincopeland/.pyenv/versions/3.9.1
-```
-
-This installs a Python 3.9.x `arm64` binary:
-
-```
-❯ file ~/.pyenv/versions/3.9.1/bin/python
-/Users/colincopeland/.pyenv/versions/3.9.1/bin/python: Mach-O 64-bit executable arm64
-```
-
-And can easily be used with direnv in your `.envrc`:
-
-```sh
-# .envrc
-layout pyenv 3.9.1
-```
+I've switched to direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) to replace pyenv-virtualenv's management of project virtual environments, which so far has been great.
 
 
 ### Python packages requiring compilation
