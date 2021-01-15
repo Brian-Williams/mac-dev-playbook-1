@@ -1,16 +1,25 @@
 # Python, Django, and React Development on Apple Silicon
 
-I'm using the following steps to configure a local development environment for Python & Django and Node & React using a MacBook Pro (13-inch, M1, 2020). This is a work in progress. Obviously not everything is natively supported yet and require workarounds.
+Apple announced last year that they will transition their entire Mac line from Intel processors to their ARM64 Apple Silicon chip called the M1. Several weeks ago I decided to purchase a new MacBook Air with the Apple M1 chip. We're in the process of refreshing Mac laptops in the coming weeks at Caktus and besides providing support to the team I was interested in what software development was like on the new architecture. While many software packages now natively support Apple Silicon (see [Does it ARM?](https://doesitarm.com/)), the development space was still in the process of rolling out support, like [Docker](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/).
+
+This post will likely age quite quickly! Many software packages have received Apple Silicon-related updates over the past few weeks. 
 
 
-## Applications and tools I use daily
+## My Development Environment
 
-* 
+At a high level, my development environment consists of:
+
+* Python and Django
+* JavaScript and React
+* PostgreSQL
+* Docker
+
+I use many other packages to help achieve this development environment, from [Homebrew](https://brew.sh/) to [direnv](https://direnv.net/), but too many to list. The post below covers steps (and gotchas) to configure a development environment like this.
 
 
 ## Rosetta 2 and Command Line Tools for Xcode
 
-[Rosetta 2](https://support.apple.com/en-us/HT211861) enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor. Install it with:
+First, make sure Rosetta 2 is installed. [Rosetta 2](https://support.apple.com/en-us/HT211861) enables a Mac with Apple silicon to use apps built for a Mac with an Intel processor. Install it with:
 
 ```sh
 softwareupdate --install-rosetta  --agree-to-license
@@ -25,7 +34,7 @@ xcode-select --install
 
 ### Intel-emulated Terminal
 
-Use the `arch` command to run commands under Rosetta 2:
+With Rosetta 2 installed, you can use the `arch` command to run commands under Rosetta 2:
 
 ```sh
 > arch
