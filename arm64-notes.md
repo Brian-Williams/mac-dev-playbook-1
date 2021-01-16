@@ -214,37 +214,6 @@ But can be installed using an Intel-emulated version:
 ```
 
 
-### Accessing DLLs or shared libraries
-
-Python libraries can wrap C libraries. For example, [python-magic](https://github.com/ahupp/python-magic) is a simple wrapper around the libmagic C library. ``libmagic`` is in Homebrew, but python-magic fails to find the library (perhaps due to arm64 Homebrew being installed on a non-standard prefix: ``/opt/homebrew/``). 
-
-I was seeing an error like this:
-
-```python
->>> import magic
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "/Users/.../projects/.../.direnv/python-3.8.2/lib/python3.8/site-packages/magic.py", line 201, in <module>
-    raise ImportError('failed to find libmagic.  Check your installation')
-ImportError: failed to find libmagic.  Check your installation
-```
-
-When Homebrew installs ``libmagic``, it also runs ``brew link libmagic`` which creates the necessary symbolic links into the ``/opt/homebrew/`` paths, such as ``/opt/homebrew/lib/libmagic.dylib``. ``python-magic`` doesn't [search this path on Darwin](https://github.com/ahupp/python-magic/blob/ca14bfba7d1eeea543c9e00ea33d1487a49e68e0/magic.py#L218-L219) through [Python's ctypes](https://docs.python.org/3/library/ctypes.html#finding-shared-libraries):
-
-```python
-    platform_to_lib = {'darwin': ['/opt/local/lib/libmagic.dylib',
-                                  '/usr/local/lib/libmagic.dylib'] +
-```
-
-As a workaround, I set ``DYLD_FALLBACK_LIBRARY_PATH`` in my project's `.direnv` to search this path:
-
-```sh
-export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib
-```
-
-And now ``import magic`` works for me. Based on what I've read, setting this [environment variable is risky](https://medium.com/macos-is-not-linux-and-other-nix-reflections/d-o-y-ou-ld-library-path-you-6ab0a6135a33), so I'm using this as a workaround until I find something better.
-
-
 ## Install Intel-emulated Python 3.7
 
 Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2, but I've had trouble using it with my Django projects. I've included the steps below to get it installed, but use at your own risk:
