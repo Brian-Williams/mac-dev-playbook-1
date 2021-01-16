@@ -184,10 +184,10 @@ layout python /usr/local/opt/python@3.7/bin/python3
 
 ### Python packages requiring compilation
 
-I found it useful to add these flags to your `.zshrc` to ensure Python packages compile properly:
+I found it useful to export these flags to ensure Python packages compile properly:
 
 ```sh
-# usful Python C-library compliation flags
+# useful Python C-library compliation flags
 export LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib"
 export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include"
 ```
