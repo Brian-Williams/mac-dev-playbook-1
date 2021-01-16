@@ -214,36 +214,17 @@ But can be installed using an Intel-emulated version:
 ```
 
 
-## Install Intel-emulated Python 3.7
+### Issues with Intel-emulated Python 3.7
 
-Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2, but I've had trouble using it with my Django projects. I've included the steps below to get it installed, but use at your own risk:
+I've had the most issues with Python 3.7. Python 3.7 isn't supported on Apple Silicon. It can be installed via Homebrew using Rosetta 2, but I've had trouble using it with my Django projects. 
 
-```sh
-arch -x86_64 bash
-export PATH="/usr/local/Homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-brew install python@3.7
-brew install python@3.8
+For example, I've run into issues with packages with external dependencies (such as `libffi`):
+
 ```
-
-And you can run it normally using:
-
-```sh
-❯ export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-❯ file `which python3.7`
-/usr/local/opt/python@3.7/bin/python3.7: Mach-O 64-bit executable x86_64
-❯ python3.7
-Python 3.7.9 (default, Nov 20 2020, 23:58:42) 
-[Clang 12.0.0 (clang-1200.0.32.27)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> 
-```
-
-I've run into issues with packages with external dependencies (such as `libffi`):
-
-```sh
-❯ brewx86 install libffi
-❯ /usr/local/opt/python@3.7/bin/python3 -m pip install bcrypt
-❯ /usr/local/opt/python@3.7/bin/python3 -m bcrypt
+❯ file `which python`
+/Users/copelco/projects/.../.direnv/python-3.7.9/bin/python: Mach-O 64-bit executable x86_64
+❯ pip install bcrypt
+❯ python3 -m bcrypt
 Traceback (most recent call last):
   File "/usr/local/Cellar/python@3.7/3.7.9_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 183, in _run_module_as_main
     mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
@@ -251,13 +232,13 @@ Traceback (most recent call last):
     return _get_module_details(pkg_main_name, error)
   File "/usr/local/Cellar/python@3.7/3.7.9_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py", line 109, in _get_module_details
     __import__(pkg_name)
-  File "/usr/local/lib/python3.7/site-packages/bcrypt/__init__.py", line 25, in <module>
+  File "/Users/copelco/projects/test/.direnv/python-3.7.9/lib/python3.7/site-packages/bcrypt/__init__.py", line 25, in <module>
     from . import _bcrypt  # type: ignore
-ImportError: dlopen(/usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so, 2): Symbol not found: _ffi_type_double
-  Referenced from: /usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
+ImportError: dlopen(/Users/copelco/projects/test/.direnv/python-3.7.9/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so, 2): Symbol not found: _ffi_type_double
+  Referenced from: /Users/copelco/projects/test/.direnv/python-3.7.9/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
   Expected in: flat namespace
- in /usr/local/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
- ```
+ in /Users/copelco/projects/test/.direnv/python-3.7.9/lib/python3.7/site-packages/_cffi_backend.cpython-37m-darwin.so
+```
 
 
 ## Apple Silicon Workaround - Docker
