@@ -129,30 +129,57 @@ arm64
 
 ## Python
 
-Xcode's command line tools provide several versions of Python that can run natively on Applie Silicon:
+Python 3.8 and Python 3.9 install easily using homebrew:
 
-```sh
-❯ python2 --version
-Python 2.7.16
-❯ python3 --version
-Python 3.8.2
-❯ file /usr/bin/python
-/usr/bin/python: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64e:Mach-O 64-bit executable arm64e]
-/usr/bin/python (for architecture x86_64):      Mach-O 64-bit executable x86_64
-/usr/bin/python (for architecture arm64e):      Mach-O 64-bit executable arm64e
-❯ file /usr/bin/python3
-/usr/bin/python3: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64e:Mach-O 64-bit executable arm64e]
-/usr/bin/python3 (for architecture x86_64):     Mach-O 64-bit executable x86_64
-/usr/bin/python3 (for architecture arm64e):     Mach-O 64-bit executable arm64e
+```
+❯ brew install python@3.8 python@3.9
+❯ file /opt/homebrew/bin/python3.9
+/opt/homebrew/bin/python3.9: Mach-O 64-bit executable arm64
 ```
 
-According to [bpo-41100: Support macOS 11 and Apple Silicon #22855](https://github.com/python/cpython/pull/22855), there's work underway to backport the 3.9 fixes to 3.8 in the official CPython distribution. [Issue 41100](https://bugs.python.org/issue41100#msg382939) indicates Python 3.7 and below will never be supported:
+However, [Issue 41100](https://bugs.python.org/issue41100#msg382939) indicates Python 3.7 and below will never be supported on Apple Silicon:
 
 > There are no plans to backport support to 3.7 and 3.6 which are in the security-fix-only phase of their release cycles.
 
-Rosetta 2 is required for these versions. I'm using Homebrew to install and manage Python versions on my M1 Mac currently. I used to use [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), but I wasn't able to install different versions successfully (even in Rosetta).
+Rosetta 2 is required for these versions. Additionally, not all Python libraries and packages run on Apple Silicon, so it's useful to install the Intel-emulated versions as well:
 
-I've switched to direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) to replace pyenv-virtualenv's management of project virtual environments, which so far has been great.
+```
+❯ arch -x86_64 bash
+$ export PATH="/usr/local/Homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+$ brew install python@3.7 python@3.8
+$ file /usr/local/opt/python@3.7/bin/python3.7
+/usr/local/opt/python@3.7/bin/python3.7: Mach-O 64-bit executable x86_64
+```
+
+Xcode's command line tools provide several versions of Python that can run natively on Applie Silicon. So with Xcode's help, I'm currently running the following versions of Python using Homebrew and Xcode:
+
+arm64:
+* Python 2.7.16 (Xcode)
+* Python 3.8.7 (homebrew)
+* Python 3.9.1 (homebrew)
+
+Intel-emulated (with Rosetta 2):
+* Python 3.7.9 (homebrew)
+* Python 3.8.7 (homebrew)
+
+
+## Python with direnv
+
+I used to use [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), but I wasn't able to install different versions successfully (even in Rosetta). I've now switched to direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) to replace ``pyenv-virtualenv``'s management of project virtual environments, which so far has been great.
+
+It's easy to auto create and activate an arm64 Python 3.9-based virtual environment with:
+
+```
+# project-a/.envrc
+layout python /opt/homebrew/bin/python3.9
+```
+
+And just as easy with an Intel-emulated Python 3.7:
+
+```
+# project-b/.envrc
+layout python /usr/local/opt/python@3.7/bin/python3
+```
 
 
 ### Python packages requiring compilation
