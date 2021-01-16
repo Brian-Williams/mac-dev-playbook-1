@@ -192,6 +192,27 @@ export LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib"
 export CPPFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include"
 ```
 
+## Python Intel-emulated workarounds
+
+Some packages fail to install on Apple Silicon:
+
+```
+❯ file `which python`
+/Users/copelco/projects/.../.direnv/python-3.9.1/bin/python: Mach-O 64-bit executable arm64
+❯ pip install numpy
+*** snip ****
+  ----------------------------------------
+  ERROR: Failed building wheel for numpy
+```
+
+But can be installed using an Intel-emulated version:
+
+```
+❯ file `which python`
+/Users/copelco/projects/.../.direnv/python-3.8.7/bin/python: Mach-O 64-bit executable x86_64
+❯ pip install numpy
+```
+
 
 ### Accessing DLLs or shared libraries
 
