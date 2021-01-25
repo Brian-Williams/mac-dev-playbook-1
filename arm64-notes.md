@@ -40,6 +40,10 @@ Also, install Xcode's command-line tools for `python3` and other useful librarie
 xcode-select --install
 ```
 
+Activity Monitor includes a handy Architecture column indicating which processes are running on Apple vs. Intel (Rosetta 2) architecture. Here's a screenshot showing Python 3.7 running under Rosetta 2:
+
+![Activity Monitor](activity-monitor-python.png)
+
 
 ### Intel-emulated Terminal
 
