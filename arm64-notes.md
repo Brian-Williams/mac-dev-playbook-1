@@ -250,12 +250,27 @@ ImportError: dlopen(/Users/copelco/projects/test/.direnv/python-3.7.9/lib/python
 ```
 
 
-## Apple Silicon Workaround - Docker
+## Docker
 
-Install Docker's [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/).
+Docker can be installed using the [Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/). I've run into several issues using this version.
+
+The first issue is some images depend on binaries that don't have arm64 variants yet. For example, `npm install` fails to find a `sentry-cli-Linux-arm64` here:
+
+```sh
+------                                                                                                                                                                                          
+ > [static_files  4/10] RUN npm install --silent:                                                                                                                                               
+#17 11.55 Error: Unable to download sentry-cli binary from https://downloads.sentry-cdn.com/sentry-cli/1.61.0/sentry-cli-Linux-arm64.                                                           
+#17 11.55 Server returned 403: Forbidden.                                                                                                                                                       
+------                                                                                                                                                                                          
+executor failed running [/bin/sh -c npm install --silent]: exit code: 1
+```
+
+I've looked into using `buildx` to support [multi-arch builds](https://docs.docker.com/docker-for-mac/multi-arch/), such as in this [How to Actually Deploy Docker Images Built on M1 Macs With Apple Silicon](https://medium.com/better-programming/how-to-actually-deploy-docker-images-built-on-a-m1-macs-with-apple-silicon-a35e39318e97) blog post. The problem is, in some cases, I only want to build the x86 variant. 
+
+For the time being, I'm using [How to deploy on remote Docker hosts with docker-compose](https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/) to build x86 images with [Docker Contexts](https://docs.docker.com/engine/reference/commandline/context/). This method allows me to point my `docker` CLI to a Linux box running on my local network to build images.
 
 
-### Kubernetes - kubectl CLI
+## Kubernetes - kubectl CLI
 
 `kubectl` on Apple Silicon is slated for [Go 1.16](https://github.com/kubernetes/kubectl/issues/988). Following [Install kubectl binary with curl on macOS](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-with-curl-on-macos), I wasn't able to run the binaries using Rosetta 2. However, Docker's [Apple M1 Tech Preview] comes with kubectl 1.19:
 
@@ -266,7 +281,7 @@ Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.3", GitCom
 
 However, you can also use homebrew to install an Intel-emulated version of kubectl:
 
-```
+```sh
 arch -x86_64 bash
 export PATH="/usr/local/Homebrew/bin:$PATH"
 brew install kubectl
