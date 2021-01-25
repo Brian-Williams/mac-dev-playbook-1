@@ -1,8 +1,10 @@
 # Python, Django, and React Development on Apple Silicon
 
-Apple announced last year that they will transition their entire Mac line from Intel processors to their ARM64 Apple Silicon chip called the M1. Several weeks ago I decided to purchase a new MacBook Air with the Apple M1 chip. We're in the process of refreshing Mac laptops in the coming weeks at Caktus and besides providing support to the team I was interested in what software development was like on the new architecture. While many software packages now natively support Apple Silicon (see [Does it ARM?](https://doesitarm.com/)), the development space was still in the process of rolling out support, like [Docker](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/).
+Last year, Apple announced that they would transition their entire Mac line from Intel processors to their ARM64 Apple Silicon chip called the M1. Several weeks ago, I started testing development on MacBook Air with the Apple M1 chip. 
 
-This post will likely age quite quickly! Many software packages have received Apple Silicon-related updates over the past few weeks. 
+Is development possible on the M1? Yes. Is it easy and straightforward? Not always, but if you can live with a few workarounds, you can make it work. While many software packages now natively support Apple Silicon (see [Does it ARM?](https://doesitarm.com/)), the development space is still in the process of rolling out support, like [Docker](https://www.docker.com/blog/apple-silicon-m1-chips-and-docker/). 
+
+This post will likely age quite quickly! Many software packages have received Apple Silicon-related updates over the past few weeks.  
 
 
 ## My Development Environment
