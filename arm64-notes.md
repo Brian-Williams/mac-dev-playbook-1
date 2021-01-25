@@ -9,14 +9,21 @@ This post will likely age quite quickly! Many software packages have received Ap
 
 ## My Development Environment
 
-At a high level, my development environment consists of:
+At a high level, I'm currently running the following on the M1:
 
-* Python and Django
-* JavaScript and React
-* PostgreSQL
-* Docker
+* Python and Django (Homebrew and Xcode)
+* JavaScript and React (Homebrew and nvm)
+* PostgreSQL (Homebrew)
+* Docker ([Apple M1 Tech Preview](https://docs.docker.com/docker-for-mac/apple-m1/))
+* Visual Studio Code ([Insiders](https://code.visualstudio.com/insiders/))
 
-I use many other packages to help achieve this development environment, from [Homebrew](https://brew.sh/) to [direnv](https://direnv.net/), but too many to list. The post below covers steps (and gotchas) to configure a development environment like this.
+Other packages are used to help achieve this development environment, from [iTerm2](https://iterm2.com/) to [direnv](https://direnv.net/), so M1 support looks good here. The areas I'm still having issues with or haven't had time to dig into yet are:
+
+* Python 3.7 under Rosetta 2
+* Building and running certain Docker images locally
+* Java
+
+The post below covers steps (and gotchas) to configure a development environment like this.
 
 
 ## Rosetta 2 and Command Line Tools for Xcode
