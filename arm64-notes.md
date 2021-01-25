@@ -34,7 +34,7 @@ First, make sure Rosetta 2 is installed. [Rosetta 2](https://support.apple.com/e
 softwareupdate --install-rosetta  --agree-to-license
 ```
 
-Also install Xcode's command line tools for `python3` and other useful libraries:
+Also, install Xcode's command-line tools for `python3` and other useful libraries:
 
 ```
 xcode-select --install
@@ -59,12 +59,12 @@ My current `.zshrc` configuration is incompatible using Rosetta 2, so you may no
 arch: posix_spawnp: zsh: Bad CPU type in executable
 ```
 
-So I just use `bash` as noted in the first example to install packages under Rosetta 2.
+So I use `bash` as noted in the first example, to install packages under Rosetta 2.
 
 
 ## Install Homebrew
 
-Homebrew does [support Apple Silicon](https://brew.sh/2020/12/01/homebrew-2.6.0/). However, a particular package may not run natively, so your milaealge may vary. To support running both native arm64 and x86-emulated homebrew packages, you install them side-by-side.
+Homebrew does [support Apple Silicon](https://brew.sh/2020/12/01/homebrew-2.6.0/). However, a particular package may not run natively, so your mileage may vary. To support running both native arm64 and x86-emulated homebrew packages, you install them side-by-side.
 
 Install arm64 ``brew`` into ``/opt/homebrew`` using the Alternative Installs method:
 
@@ -160,7 +160,7 @@ $ file /usr/local/opt/python@3.7/bin/python3.7
 /usr/local/opt/python@3.7/bin/python3.7: Mach-O 64-bit executable x86_64
 ```
 
-Xcode's command line tools provide several versions of Python that can run natively on Applie Silicon. So with Xcode's help, I'm currently running the following versions of Python using Homebrew and Xcode:
+Xcode's command-line tools provide several versions of Python that can run natively on Apple Silicon. So with Xcode's help, I'm currently running the following versions of Python using Homebrew and Xcode:
 
 arm64:
 * Python 2.7.16 (Xcode)
@@ -176,7 +176,7 @@ Intel-emulated (with Rosetta 2):
 
 I used to use [pyenv](https://github.com/pyenv/pyenv) and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv), but I wasn't able to install different versions successfully (even in Rosetta). I've now switched to direnv's [layout_python](https://github.com/direnv/direnv/wiki/Python) to replace ``pyenv-virtualenv``'s management of project virtual environments, which so far has been great.
 
-It's easy to auto create and activate an arm64 Python 3.9-based virtual environment with:
+It's easy to auto-create and activate an arm64 Python 3.9-based virtual environment with:
 
 ```
 # project-a/.envrc
