@@ -287,6 +287,10 @@ export PATH="/usr/local/Homebrew/bin:$PATH"
 brew install kubectl
 ```
 
+## Summary
+
+That's it! If you have additional ideas and/or workarounds, I'm excited to hear about them.
+
 
 ## Resources
 
